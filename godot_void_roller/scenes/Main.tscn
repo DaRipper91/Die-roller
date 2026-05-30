@@ -1,0 +1,233 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/DiceRoom.tscn" id="2_dice_room"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DiceViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="DiceViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="DiceScene" parent="DiceViewportContainer/SubViewport" instance=ExtResource("2_dice_room")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="UI/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="PlayerLabel" type="Label" parent="UI/TopBar/HBox"]
+layout_mode = 2
+text = "▚ INITIALIZING... ▞"
+
+[node name="SanityLabel" type="Label" parent="UI/TopBar/HBox"]
+layout_mode = 2
+text = "SANE_LEVEL: STABLE"
+
+[node name="CorruptionLabel" type="Label" parent="UI/TopBar/HBox"]
+layout_mode = 2
+text = "▚ CORRUPTION: 0 ▞"
+
+[node name="BottomBar" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PromptLabel" type="Label" parent="UI/BottomBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[ PRESS ENTER TO ROLL | 'Q' TO ABANDON ]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameEntryOverlay" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.95)
+
+[node name="VBox" type="VBoxContainer" parent="UI/NameEntryOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="UI/NameEntryOverlay/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "3N73R PL4Y3R N4M3"
+horizontal_alignment = 1
+
+[node name="CurrentPlayers" type="Label" parent="UI/NameEntryOverlay/VBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="UI/NameEntryOverlay/VBox"]
+layout_mode = 2
+placeholder_text = "> "
+alignment = 1
+
+[node name="Hint" type="Label" parent="UI/NameEntryOverlay/VBox"]
+layout_mode = 2
+text = "[ Leave empty to start ]"
+horizontal_alignment = 1
+
+[node name="BlightOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0, 0, 0.9)
+
+[node name="VBox" type="VBoxContainer" parent="UI/BlightOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="UI/BlightOverlay/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "!!! 7H3 V01D 0FF3R5 4 C0RRUP73D 61F7 !!!"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="UI/BlightOverlay/VBox"]
+layout_mode = 2
+text = "Who shall receive the blight?"
+horizontal_alignment = 1
+
+[node name="PlayerButtons" type="VBoxContainer" parent="UI/BlightOverlay/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResultLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -30.0
+offset_right = 200.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.5, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "6 + 1 = 7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CursedOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Noise" type="Label" parent="UI/CursedOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.3, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "13 13 13 13 13 13 13 13 13"
+autowrap_mode = 1
+
+[node name="Message" type="Label" parent="UI/CursedOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -50.0
+offset_right = 400.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "Y0U W3R3 N3V3R 5UPP053D 70 R34CH 7H15"
+horizontal_alignment = 1
+vertical_alignment = 1

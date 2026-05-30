@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Void Roller
+Comment=Roll your fate... if you dare.
+Exec=/home/daripper/Projects/die_roller/launch_void.sh
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Game;
+Keywords=spooky;dice;horror;
