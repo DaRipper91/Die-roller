@@ -16,6 +16,24 @@ extends RigidBody3D
 
 var val = 0 # Current internal value
 
+func _process(_delta):
+	var color = GameManager.get_rainbow_color()
+	if val == 0:
+		label_up.modulate = color
+		label_down.modulate = color
+		label_front.modulate = color
+		label_back.modulate = color
+		label_right.modulate = color
+		label_left.modulate = color
+	else:
+		# If glitched, maybe strobe faster?
+		label_up.modulate = GameManager.get_rainbow_color(1.0)
+		label_down.modulate = GameManager.get_rainbow_color(1.0)
+		label_front.modulate = GameManager.get_rainbow_color(1.0)
+		label_back.modulate = GameManager.get_rainbow_color(1.0)
+		label_right.modulate = GameManager.get_rainbow_color(1.0)
+		label_left.modulate = GameManager.get_rainbow_color(1.0)
+
 func get_die_value() -> int:
 	# Standard die mapping (Simplified)
 	# Ray Up colliding -> The Bottom face is on the floor, so Top face (Up) is the value.
@@ -91,17 +109,16 @@ func _update_glitch_visuals(glitch_val: int):
 			top_label = labels[axis]
 	
 	top_label.text = str(glitch_val)
-	top_label.modulate = Color(1, 0, 0) # Red for glitch
 
 func roll(impulse: Vector3, torque: Vector3):
 	val = 0 # Reset glitch
-	# Reset label colors/text if they were glitched
-	label_up.text = "1"; label_up.modulate = Color(1, 0.5, 0)
-	label_down.text = "6"; label_down.modulate = Color(1, 0.5, 0)
-	label_front.text = "3"; label_front.modulate = Color(1, 0.5, 0)
-	label_back.text = "4"; label_back.modulate = Color(1, 0.5, 0)
-	label_right.text = "2"; label_right.modulate = Color(1, 0.5, 0)
-	label_left.text = "5"; label_left.modulate = Color(1, 0.5, 0)
+	# Reset label text if they were glitched
+	label_up.text = "1"
+	label_down.text = "6"
+	label_front.text = "3"
+	label_back.text = "4"
+	label_right.text = "2"
+	label_left.text = "5"
 	
 	apply_central_impulse(impulse)
 	apply_torque_impulse(torque)

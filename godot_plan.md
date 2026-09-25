@@ -23,25 +23,25 @@ Migrating the terminal-based "Void Roller" to a high-fidelity Godot 4 project. W
 ### Phase 1: Project Scaffolding & Main UI (COMPLETED)
 - Establishing the base Godot project and the retro-terminal UI layout.
 
-### Phase 2: The Dice Room & Physics (REFINING)
+### Phase 2: The Dice Room & Physics (COMPLETED)
 - Goal: Real-time 3D dice physics in a contained terminal environment.
 - [x] Set up a SubViewport for 3D content.
 - [x] Create a "Dice Box" with StaticBody3D walls/floor.
 - [x] Implement a Die3D (RigidBody3D).
-- [ ] **UPGRADE**: Implement **PS1-style Vertex Jitter** shader for the dice to make them look shaky and retro.
-- [ ] **UPGRADE**: Use a high-poly-to-low-poly baked dice model or a custom mesh with high-contrast amber pip textures.
+- [x] **UPGRADE**: Implement **PS1-style Vertex Jitter** shader for the dice.
+- [x] **UPGRADE**: Darkened dice body for high-contrast visibility.
 
-### Phase 3: Corruption & Sanity Engine (IN PROGRESS)
+### Phase 3: Corruption & Sanity Engine (COMPLETED)
 - [x] GameManager autoload script.
 - [x] Player data structures (Name, Corruption, Sanity).
-- [ ] Port logic for 7/11 triggers and the "Blight Choice" UI popup.
-- [ ] Implement Sanity label updates based on Corruption levels.
+- [x] Port logic for 7/11 triggers and the "Blight Choice" UI popup.
+- [x] Implement Sanity label updates based on Corruption levels.
 
-### Phase 4: The "Cursed" Aesthetic (UPGRADED)
+### Phase 4: The "Cursed" Aesthetic (COMPLETED)
 - **Goal**: Recreate a "Haunted Security Monitor" look.
-- [ ] **NEW**: Implement **Volumetric Fog** and a single flicker-heavy **OmniLight3D** for a dark room vibe.
-- [ ] **NEW**: Upgrade CRT shader with **Signal Interference** (Antenna noise) and **Chromatic Aberration**.
-- [ ] Implement the Subliminal Flash effect using a dedicated ColorRect and AnimationPlayer.
+- [x] **NEW**: Implement **Volumetric Fog** and a flicker-heavy **OmniLight3D**.
+- [x] **NEW**: Apply and tune CRT shader with Signal Interference and Chromatic Aberration.
+- [x] **NEW**: Implement **Stalker Whispers** and **Subliminal Flashes**.
 - [ ] Set up AudioStreamPlayer nodes for glitch sounds.
 
 ### Phase 5: The Cursed 13 (THE ANOMALY)

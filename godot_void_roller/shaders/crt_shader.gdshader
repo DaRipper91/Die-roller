@@ -4,11 +4,11 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 uniform float scanline_count = 320.0;
 uniform float scanline_opacity = 0.2;
 uniform float vignette_opacity = 0.3;
-uniform float brightness = 1.2;
+uniform float brightness = 1.0;
 uniform float noise_amount = 0.04;
 uniform float signal_interference = 0.05;
 uniform float aberration = 0.002;
-uniform float bloom_intensity = 1.1;
+uniform float bloom_intensity = 0.4;
 
 float noise(vec2 uv) {
     return fract(sin(dot(uv.xy, vec2(12.9898, 78.233))) * 43758.5453123);

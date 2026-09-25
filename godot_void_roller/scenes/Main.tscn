@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/DiceRoom.tscn" id="2_dice_room"]
+[ext_resource type="Shader" path="res://shaders/crt_shader.gdshader" id="3_crt_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("3_crt_shader")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -231,3 +235,15 @@ theme_override_font_sizes/font_size = 38
 text = "Y0U W3R3 N3V3R 5UPP053D 70 R34CH 7H15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PostProcess" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="CRTOverlay" type="ColorRect" parent="PostProcess"]
+material = SubResource("ShaderMaterial_crt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

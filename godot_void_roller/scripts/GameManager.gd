@@ -9,6 +9,10 @@ var players = []
 var player_data = {} # { "NAME": { "corruption": 0, "sanity": "STABLE" } }
 var current_player_index = 0
 
+func get_rainbow_color(offset: float = 0.0) -> Color:
+	var t = (Time.get_ticks_msec() / 1000.0) + offset
+	return Color.from_hsv(fmod(t * 0.5, 1.0), 0.8, 1.0)
+
 func add_player(name: String):
 	name = name.to_upper()
 	if not player_data.has(name):

@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/FlickerLight.gd" id="1_flicker"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(10, 0.1, 10)
@@ -16,6 +18,9 @@ roughness = 0.8
 [sub_resource type="Environment" id="Environment_1"]
 background_mode = 1
 background_color = Color(0, 0, 0, 0)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.05
+volumetric_fog_albedo = Color(0.2, 0.2, 0.2, 1)
 glow_enabled = true
 glow_intensity = 0.8
 glow_strength = 1.0
@@ -29,10 +34,11 @@ current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
-light_color = Color(1, 0.505882, 0, 1)
-light_energy = 5.0
+light_color = Color(1, 0.7, 0.3, 1)
+light_energy = 2.0
 shadow_enabled = true
 omni_range = 20.0
+script = ExtResource("1_flicker")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
